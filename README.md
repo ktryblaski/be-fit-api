@@ -3,7 +3,7 @@
 ### Running 
 
 ```sh
-$ mvn clean spring-boot:run -pl be-fit-app
+$ mvn clean install && mvn spring-boot:run -pl be-fit-app
 ```
 
 ### Building jar file 
