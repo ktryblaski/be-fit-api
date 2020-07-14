@@ -17,6 +17,15 @@
 
     <packaging>pom</packaging>
 
+    <modules>
+        <module>be-fit-app</module>
+        <module>be-fit-domain</module>
+        <module>be-fit-persistence</module>
+        <module>be-fit-service</module>
+        <module>be-fit-webservice</module>
+        <module>be-fit-dto</module>
+    </modules>
+
     <properties>
         <revison>1.0-SNAPSHOT</revison>
 
@@ -28,15 +37,6 @@
 
         <lombok.version>1.18.12</lombok.version>
     </properties>
-
-    <modules>
-        <module>be-fit-app</module>
-        <module>be-fit-domain</module>
-        <module>be-fit-persistence</module>
-        <module>be-fit-service</module>
-        <module>be-fit-webservice</module>
-        <module>be-fit-dto</module>
-    </modules>
 
     <dependencyManagement>
         <dependencies>
@@ -111,6 +111,10 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
     </build>

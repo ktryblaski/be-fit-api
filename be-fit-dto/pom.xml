@@ -12,4 +12,8 @@
 
     <artifactId>be-fit-dto</artifactId>
 
+    <properties>
+        <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
+    </properties>
+
 </project>
