@@ -1,7 +1,7 @@
 package pl.karol_trybalski.befit.domain.entity;
 
 import lombok.Data;
-import pl.karol_trybalski.befit.domain.base.BaseEntity;
+import pl.karol_trybalski.befit.domain.entity.base.BaseEntity;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;

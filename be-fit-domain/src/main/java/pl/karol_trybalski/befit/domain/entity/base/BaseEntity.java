@@ -1,4 +1,4 @@
-package pl.karol_trybalski.befit.domain.base;
+package pl.karol_trybalski.befit.domain.entity.base;
 
 import lombok.Data;
 
