@@ -6,9 +6,9 @@ import pl.karol_trybalski.befit.domain.entity.base.BaseEntity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "component")
+@Table(name = "product")
 @Data
-public class Component extends BaseEntity {
+public class Product extends BaseEntity {
 
     private String name;
 

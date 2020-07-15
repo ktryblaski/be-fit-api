@@ -13,7 +13,7 @@ public class Ingredient extends BaseEntity {
     private int weight;
 
     @ManyToOne
-    @JoinColumn(name = "component_id")
-    private Component component;
+    @JoinColumn(name = "product_id")
+    private Product product;
 
 }

@@ -6,9 +6,9 @@ CREATE TABLE macronutrients (
     fats INTEGER NOT NULL
 );
 
-CREATE SEQUENCE component_seq START 1;
-CREATE TABLE component (
-    id INTEGER PRIMARY KEY DEFAULT nextval('component_seq'),
+CREATE SEQUENCE product_seq START 1;
+CREATE TABLE product (
+    id INTEGER PRIMARY KEY DEFAULT nextval('product_seq'),
     name VARCHAR(128) NOT NULL UNIQUE,
     macronutrients_id INTEGER NOT NULL REFERENCES macronutrients(id)
 );
@@ -16,6 +16,6 @@ CREATE TABLE component (
 CREATE SEQUENCE ingredient_seq START 1;
 CREATE TABLE ingredient (
     id INTEGER PRIMARY KEY DEFAULT nextval('ingredient_seq'),
-    component_id INTEGER NOT NULL REFERENCES component(id),
+    product_id INTEGER NOT NULL REFERENCES product(id),
     weight INTEGER NOT NULL
 );
