@@ -31,4 +31,8 @@ public abstract class BaseService<T, ID> {
     public Optional<T> findById(ID id) {
         return this.repository.findById(id);
     }
+
+    public T getOne(ID id) {
+        return this.repository.getOne(id);
+    }
 }

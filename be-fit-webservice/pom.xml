@@ -30,6 +30,10 @@
             <groupId>${project.groupId}</groupId>
             <artifactId>be-fit-domain</artifactId>
         </dependency>
+        <dependency>
+            <groupId>${project.groupId}</groupId>
+            <artifactId>be-fit-dto</artifactId>
+        </dependency>
     </dependencies>
 
 </project>
