@@ -12,7 +12,7 @@ public abstract class BaseService<T, ID> {
 
     protected final BaseRepository<T, ID> repository;
 
-    public BaseService(BaseRepository<T, ID> repository) {
+    public BaseService(final BaseRepository<T, ID> repository) {
         this.repository = repository;
     }
 
@@ -20,19 +20,19 @@ public abstract class BaseService<T, ID> {
         return this.repository.findAll();
     }
 
-    public List<T> findAll(Sort sort) {
+    public List<T> findAll(final Sort sort) {
         return this.repository.findAll(sort);
     }
 
-    public Page<T> findAll(Pageable pageable) {
+    public Page<T> findAll(final Pageable pageable) {
         return this.repository.findAll(pageable);
     }
 
-    public Optional<T> findById(ID id) {
+    public Optional<T> findById(final ID id) {
         return this.repository.findById(id);
     }
 
-    public T getOne(ID id) {
+    public T getOne(final ID id) {
         return this.repository.getOne(id);
     }
 }

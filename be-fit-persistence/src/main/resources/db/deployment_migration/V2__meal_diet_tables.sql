@@ -2,6 +2,7 @@ CREATE SEQUENCE meal_seq START 1;
 CREATE TABLE meal (
     id INTEGER PRIMARY KEY DEFAULT nextval('meal_seq'),
     name VARCHAR(128) NOT NULL,
+    description VARCHAR(1024),
     type VARCHAR(32)
 );
 

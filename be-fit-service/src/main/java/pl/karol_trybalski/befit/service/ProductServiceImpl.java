@@ -10,7 +10,7 @@ import pl.karol_trybalski.befit.persistence.repository.ProductRepository;
 public class ProductServiceImpl extends BaseService<Product, Long> {
 
     @Autowired
-    public ProductServiceImpl(ProductRepository repository) {
+    public ProductServiceImpl(final ProductRepository repository) {
         super(repository);
     }
 

@@ -8,4 +8,5 @@ public enum  MealType {
     SUPPER,
     BEFORE_WORKOUT,
     AFTER_WORKOUT
+
 }

@@ -13,6 +13,7 @@ import java.util.Set;
 public class Meal extends BaseEntity {
 
     private String name;
+    private String description;
 
     @Enumerated(EnumType.STRING)
     private MealType type;
