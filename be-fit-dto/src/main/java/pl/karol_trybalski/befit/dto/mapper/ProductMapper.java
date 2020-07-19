@@ -12,4 +12,6 @@ public interface ProductMapper {
 
     ProductDTO map(Product product);
 
+    Product map(ProductDTO product);
+
 }

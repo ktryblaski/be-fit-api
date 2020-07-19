@@ -1,10 +1,7 @@
 package pl.karol_trybalski.befit.webservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import pl.karol_trybalski.befit.dto.dto.ProductDTO;
 import pl.karol_trybalski.befit.dto.mapper.ProductMapper;
 import pl.karol_trybalski.befit.service.ProductServiceImpl;
@@ -30,6 +27,13 @@ public class ProductController {
                 .stream()
                 .map(ProductMapper.INSTANCE::map)
                 .collect(Collectors.toList());
+    }
+
+    @PostMapping
+    public Long create(final @RequestBody ProductDTO product) {
+        return productService.save(
+                ProductMapper.INSTANCE.map(product)
+        );
     }
 
     @GetMapping("/{id}")
