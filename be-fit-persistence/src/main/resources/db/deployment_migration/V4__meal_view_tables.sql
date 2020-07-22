@@ -2,8 +2,6 @@ CREATE VIEW v_meal AS
 SELECT
     m.id,
     m.name,
-    m.type,
-    m.description,
     SUM(i.weight) AS weight,
     SUM(i.weight / 100.0 * ma.carbohydrates) AS carbohydrates,
     SUM(i.weight / 100.0 * ma.proteins) AS proteins,

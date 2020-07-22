@@ -2,7 +2,6 @@ package pl.karol_trybalski.befit.domain.entity;
 
 import lombok.Data;
 import pl.karol_trybalski.befit.domain.entity.base.BaseEntity;
-import pl.karol_trybalski.befit.domain.enums.MealType;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -14,9 +13,6 @@ public class Meal extends BaseEntity {
 
     private String name;
     private String description;
-
-    @Enumerated(EnumType.STRING)
-    private MealType type;
 
     @ManyToMany
     @JoinTable(name = "meal_ingredient",

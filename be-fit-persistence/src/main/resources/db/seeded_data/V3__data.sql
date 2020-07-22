@@ -28,9 +28,9 @@ INSERT INTO ingredient(id, product_id, weight) VALUES
 (5, 4, 100),
 (6, 3, 20);
 
-INSERT INTO meal(id, name, description, type) VALUES
-(1, 'Pancakes', 'Tasty', 'BREAKFAST'),
-(2, 'Oat oat oat', 'Too much', 'LUNCH');
+INSERT INTO meal(id, name, description) VALUES
+(1, 'Pancakes', 'Tasty <3'),
+(2, 'Porridge', 'Too much :O');
 
 INSERT INTO meal_ingredient(meal_id, ingredient_id) VALUES
 (1, 1),
