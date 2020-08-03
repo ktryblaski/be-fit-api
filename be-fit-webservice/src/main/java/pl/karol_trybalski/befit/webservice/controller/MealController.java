@@ -1,15 +1,11 @@
 package pl.karol_trybalski.befit.webservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import pl.karol_trybalski.befit.dto.dto.MealCUDTO;
 import pl.karol_trybalski.befit.dto.dto.MealDTO;
 import pl.karol_trybalski.befit.dto.dto.MealViewDTO;
-import pl.karol_trybalski.befit.dto.dto.ProductDTO;
 import pl.karol_trybalski.befit.dto.mapper.MealMapper;
-import pl.karol_trybalski.befit.dto.mapper.ProductMapper;
 import pl.karol_trybalski.befit.service.MealServiceImpl;
 
 import java.util.List;
@@ -39,5 +35,16 @@ public class MealController {
         return mealService.findById(id)
                 .map(MealMapper.INSTANCE::map)
                 .orElse(null);
+    }
+
+    @PostMapping
+    public Long create(final @RequestBody MealCUDTO meal) {
+        return mealService.create(meal);
+    }
+
+    @PutMapping("/{id}")
+    public MealDTO create(final @PathVariable Long id,
+                          final @RequestBody MealCUDTO meal) {
+        return MealMapper.INSTANCE.map(mealService.update(id, meal));
     }
 }

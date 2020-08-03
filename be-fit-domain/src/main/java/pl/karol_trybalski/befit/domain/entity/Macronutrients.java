@@ -6,9 +6,9 @@ import pl.karol_trybalski.befit.domain.entity.base.BaseEntity;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+@Data
 @Entity
 @Table(name = "macronutrients")
-@Data
 public class Macronutrients extends BaseEntity {
 
     private int carbohydrates;

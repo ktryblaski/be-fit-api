@@ -6,9 +6,9 @@ import pl.karol_trybalski.befit.domain.entity.base.BaseEntity;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+@Data
 @Entity
 @Table(name = "v_meal")
-@Data
 public class MealView extends BaseEntity {
 
     private String name;

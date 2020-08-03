@@ -5,14 +5,14 @@ import pl.karol_trybalski.befit.domain.entity.base.BaseEntity;
 
 import javax.persistence.*;
 
+@Data
 @Entity
 @Table(name = "product")
-@Data
 public class Product extends BaseEntity {
 
     private String name;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "macronutrients_id")
     private Macronutrients macronutrients;
 

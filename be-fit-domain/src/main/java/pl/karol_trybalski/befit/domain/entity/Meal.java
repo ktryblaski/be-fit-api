@@ -1,14 +1,20 @@
 package pl.karol_trybalski.befit.domain.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 import pl.karol_trybalski.befit.domain.entity.base.BaseEntity;
 
 import javax.persistence.*;
 import java.util.Set;
 
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Entity
 @Table(name = "meal")
-@Data
 public class Meal extends BaseEntity {
 
     private String name;
@@ -19,11 +25,5 @@ public class Meal extends BaseEntity {
             joinColumns = {@JoinColumn(name = "meal_id")},
             inverseJoinColumns = {@JoinColumn(name = "ingredient_id")})
     private Set<Ingredient> ingredients;
-
-    @ManyToMany
-    @JoinTable(name = "diet_meal",
-            joinColumns = {@JoinColumn(name = "meal_id")},
-            inverseJoinColumns = {@JoinColumn(name = "diet_id")})
-    private Set<Diet> diets;
 
 }
