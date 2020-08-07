@@ -14,6 +14,7 @@ import java.util.Set;
 public class Diet extends BaseEntity {
 
     private String name;
+    private String description;
 
     @Column(name = "start_date")
     private LocalDate startDate;

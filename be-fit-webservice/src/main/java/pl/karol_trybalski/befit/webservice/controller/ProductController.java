@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import pl.karol_trybalski.befit.dto.dto.ProductDTO;
 import pl.karol_trybalski.befit.dto.mapper.ProductMapper;
 import pl.karol_trybalski.befit.service.ProductServiceImpl;
+import pl.karol_trybalski.befit.webservice.ApiResponse;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -22,25 +23,24 @@ public class ProductController {
 
 
     @GetMapping
-    public List<ProductDTO> list() {
-        return productService.findAll()
-                .stream()
-                .map(ProductMapper.INSTANCE::map)
-                .collect(Collectors.toList());
+    public ApiResponse<List<ProductDTO>> list() {
+        return ApiResponse.from(
+                productService.findAll().stream().map(ProductMapper.INSTANCE::map).collect(Collectors.toList())
+        );
     }
 
     @PostMapping
-    public Long create(final @RequestBody ProductDTO product) {
-        return productService.save(
-                ProductMapper.INSTANCE.map(product)
+    public ApiResponse<Long> create(final @RequestBody ProductDTO product) {
+        return ApiResponse.from(
+                productService.save(ProductMapper.INSTANCE.map(product))
         );
     }
 
     @GetMapping("/{id}")
-    public ProductDTO get(final @PathVariable Long id) {
-        return productService.findById(id)
-                .map(ProductMapper.INSTANCE::map)
-                .orElse(null);
+    public ApiResponse<ProductDTO> get(final @PathVariable Long id) {
+        return ApiResponse.from(
+                ProductMapper.INSTANCE.map(productService.getOne(id))
+        );
     }
 
 }

@@ -31,6 +31,7 @@ CREATE SEQUENCE diet_seq START 1;
 CREATE TABLE diet (
     id INTEGER PRIMARY KEY DEFAULT nextval('diet_seq'),
     name VARCHAR(128) NOT NULL UNIQUE,
+    description VARCHAR(1024),
     start_date DATE,
     end_date DATE,
     type VARCHAR(32),

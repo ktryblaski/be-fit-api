@@ -7,6 +7,7 @@ import pl.karol_trybalski.befit.dto.dto.MealDTO;
 import pl.karol_trybalski.befit.dto.dto.MealViewDTO;
 import pl.karol_trybalski.befit.dto.mapper.MealMapper;
 import pl.karol_trybalski.befit.service.MealServiceImpl;
+import pl.karol_trybalski.befit.webservice.ApiResponse;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -23,28 +24,32 @@ public class MealController {
     }
 
     @GetMapping(path = "/lite")
-    public List<MealViewDTO> listLite() {
-        return mealService.findAllView()
-                .stream()
-                .map(MealMapper.INSTANCE::map)
-                .collect(Collectors.toList());
+    public ApiResponse<List<MealViewDTO>> listLite() {
+        return ApiResponse.from(
+                mealService.findAllView().stream().map(MealMapper.INSTANCE::map).collect(Collectors.toList())
+        );
     }
 
     @GetMapping("/{id}")
-    public MealDTO get(final @PathVariable Long id) {
-        return mealService.findById(id)
-                .map(MealMapper.INSTANCE::map)
-                .orElse(null);
+    public ApiResponse<MealDTO> get(final @PathVariable Long id) {
+        return ApiResponse.from(
+                MealMapper.INSTANCE.map(mealService.getOne(id))
+        );
     }
 
     @PostMapping
-    public Long create(final @RequestBody MealCUDTO meal) {
-        return mealService.create(meal);
+    public ApiResponse<Long> create(final @RequestBody MealCUDTO meal) {
+        return ApiResponse.from(
+                mealService.create(meal)
+        );
     }
 
     @PutMapping("/{id}")
-    public MealDTO create(final @PathVariable Long id,
-                          final @RequestBody MealCUDTO meal) {
-        return MealMapper.INSTANCE.map(mealService.update(id, meal));
+    public ApiResponse<MealDTO> create(final @PathVariable Long id,
+                                       final @RequestBody MealCUDTO meal) {
+
+        return ApiResponse.from(
+                MealMapper.INSTANCE.map(mealService.update(id, meal))
+        );
     }
 }

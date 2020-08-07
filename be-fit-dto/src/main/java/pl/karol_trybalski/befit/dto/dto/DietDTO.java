@@ -11,6 +11,7 @@ import java.util.Set;
 public class DietDTO extends BaseDTO {
 
     private String name;
+    private String description;
     private LocalDate startDate;
     private LocalDate endDate;
     private DietType type;
