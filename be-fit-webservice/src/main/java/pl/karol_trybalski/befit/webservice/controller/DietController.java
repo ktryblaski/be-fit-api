@@ -9,7 +9,6 @@ import pl.karol_trybalski.befit.dto.dto.DietDTO;
 import pl.karol_trybalski.befit.dto.dto.DietViewDTO;
 import pl.karol_trybalski.befit.dto.mapper.DietMapper;
 import pl.karol_trybalski.befit.service.DietServiceImpl;
-import pl.karol_trybalski.befit.webservice.ApiResponse;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,16 +25,12 @@ public class DietController {
     }
 
     @GetMapping(path = "/lite")
-    public ApiResponse<List<DietViewDTO>> listLite() {
-        return ApiResponse.from(
-                dietService.findAllView().stream().map(DietMapper.INSTANCE::map).collect(Collectors.toList())
-        );
+    public List<DietViewDTO> listLite() {
+        return dietService.findAllView().stream().map(DietMapper.INSTANCE::map).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
-    public ApiResponse<DietDTO> get(final @PathVariable Long id) {
-        return ApiResponse.from(
-                DietMapper.INSTANCE.map(dietService.getOne(id))
-        );
+    public DietDTO get(final @PathVariable Long id) {
+        return DietMapper.INSTANCE.map(dietService.getOne(id));
     }
 }

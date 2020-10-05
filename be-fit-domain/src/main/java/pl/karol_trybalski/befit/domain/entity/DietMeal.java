@@ -3,6 +3,7 @@ package pl.karol_trybalski.befit.domain.entity;
 import lombok.Getter;
 import lombok.Setter;
 import pl.karol_trybalski.befit.domain.entity.base.BaseEntity;
+import pl.karol_trybalski.befit.domain.entity.meal.Meal;
 import pl.karol_trybalski.befit.domain.enums.MealType;
 
 import javax.persistence.*;

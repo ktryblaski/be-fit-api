@@ -1,4 +1,4 @@
-package pl.karol_trybalski.befit.dto.dto;
+package pl.karol_trybalski.befit.dto.dto.meal;
 
 import lombok.Data;
 import pl.karol_trybalski.befit.domain.entity.Ingredient;

@@ -1,5 +1,6 @@
 CREATE SEQUENCE macronutrients_seq START 1;
-CREATE TABLE macronutrients (
+CREATE TABLE macronutrients
+(
     id INTEGER PRIMARY KEY DEFAULT nextval('macronutrients_seq'),
     carbohydrates INTEGER NOT NULL,
     proteins INTEGER NOT NULL,
@@ -7,18 +8,41 @@ CREATE TABLE macronutrients (
 );
 
 CREATE SEQUENCE product_seq START 1;
-CREATE TABLE product (
+CREATE TABLE product
+(
     id INTEGER PRIMARY KEY DEFAULT nextval('product_seq'),
     name VARCHAR(128) NOT NULL UNIQUE,
     macronutrients_id INTEGER NOT NULL REFERENCES macronutrients(id)
 );
 
 CREATE SEQUENCE ingredient_seq START 1;
-CREATE TABLE ingredient (
+CREATE TABLE ingredient
+(
     id INTEGER PRIMARY KEY DEFAULT nextval('ingredient_seq'),
     product_id INTEGER NOT NULL REFERENCES product(id),
     weight INTEGER NOT NULL
 );
+
+CREATE SEQUENCE meal_template_seq START 1;
+CREATE TABLE meal_template
+(
+    id INTEGER PRIMARY KEY DEFAULT nextval('meal_template_seq'),
+    name VARCHAR(128) NOT NULL UNIQUE,
+    description VARCHAR(1024)
+);
+
+CREATE TABLE meal_template_ingredient
+(
+    meal_template_id INTEGER NOT NULL REFERENCES meal_template(id),
+    ingredient_id INTEGER NOT NULL REFERENCES ingredient(id),
+    UNIQUE (meal_template_id, ingredient_id)
+);
+
+
+
+
+
+
 
 CREATE SEQUENCE meal_seq START 1;
 CREATE TABLE meal (

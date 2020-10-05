@@ -11,10 +11,6 @@ public class ApiResponse<T> {
     private T data;
     private String error;
 
-    public static <R> ApiResponse<R> from(R data) {
-        return new ApiResponse<>(data, null);
-    }
-
     public static <R> ApiResponse<R> from(DomainError error) {
         return new ApiResponse<>(null, error);
     }
