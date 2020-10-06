@@ -2,7 +2,7 @@ package pl.karol_trybalski.befit.webservice;
 
 import lombok.Getter;
 import lombok.Setter;
-import pl.karol_trybalski.befit.webservice.exception.DomainError;
+import pl.karol_trybalski.befit.domain.exception.DomainError;
 
 @Getter
 @Setter

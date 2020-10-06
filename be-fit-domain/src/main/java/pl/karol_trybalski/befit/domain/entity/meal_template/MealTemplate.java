@@ -20,6 +20,7 @@ public class MealTemplate extends BaseEntity {
 
     private String name;
     private String description;
+    private boolean active;
 
     @ManyToMany
     @JoinTable(name = "meal_template_ingredient",

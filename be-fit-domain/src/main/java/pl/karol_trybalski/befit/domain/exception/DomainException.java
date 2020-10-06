@@ -1,4 +1,4 @@
-package pl.karol_trybalski.befit.webservice.exception;
+package pl.karol_trybalski.befit.domain.exception;
 
 public class DomainException extends RuntimeException {
 

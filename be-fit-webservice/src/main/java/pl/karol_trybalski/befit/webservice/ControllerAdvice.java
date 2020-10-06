@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
-import pl.karol_trybalski.befit.webservice.exception.DomainError;
+import pl.karol_trybalski.befit.domain.exception.DomainError;
 
 import javax.persistence.EntityNotFoundException;
 

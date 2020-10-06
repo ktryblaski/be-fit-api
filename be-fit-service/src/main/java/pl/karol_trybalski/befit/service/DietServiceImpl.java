@@ -11,7 +11,7 @@ import pl.karol_trybalski.befit.service.base.BaseService;
 import java.util.List;
 
 @Service
-public class DietServiceImpl extends BaseService<Diet, Long> {
+public class DietServiceImpl extends BaseService<Diet, DietRepository, Long> {
 
     private final DietViewRepository viewRepository;
 

@@ -10,6 +10,7 @@ public class MealTemplateCUDTO extends BaseDTO {
 
     private String name;
     private String description;
+    private boolean active;
     private List<IngredientDTO> ingredients;
 
     @Data

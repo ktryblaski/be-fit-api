@@ -36,5 +36,6 @@ if [ -z "$container" ]; then
           -d --rm  \
           postgres:$POSTGRES_VERSION
 else
+  # TODO start stopped container
   echo "A container already exists."
 fi

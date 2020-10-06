@@ -9,7 +9,7 @@ import pl.karol_trybalski.befit.domain.entity.Product;
 import pl.karol_trybalski.befit.persistence.repository.ProductRepository;
 
 @Service
-public class ProductServiceImpl extends BaseService<Product, Long> {
+public class ProductServiceImpl extends BaseService<Product, ProductRepository, Long> {
 
     final MacronutrientsRepository macronutrientsRepository;
 

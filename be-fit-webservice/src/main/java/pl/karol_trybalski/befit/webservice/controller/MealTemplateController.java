@@ -22,8 +22,8 @@ public class MealTemplateController {
     }
 
     @GetMapping
-    public List<MealTemplateDTO> findAllLites() {
-        return mealTemplateService.findAll().stream().map(MealTemplateMapper.INSTANCE::map).collect(Collectors.toList());
+    public List<MealTemplateDTO> findAll(@RequestParam(defaultValue = "false") boolean onlyActive) {
+        return mealTemplateService.findAll(onlyActive).stream().map(MealTemplateMapper.INSTANCE::map).collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
@@ -39,5 +39,15 @@ public class MealTemplateController {
     @PutMapping("/{id}")
     public MealTemplateDTO update(final @PathVariable Long id, final @RequestBody MealTemplateCUDTO meal) {
         return MealTemplateMapper.INSTANCE.map(mealTemplateService.update(id, meal));
+    }
+
+    @PostMapping("/{id}/activate")
+    public MealTemplateDTO activate(final @PathVariable Long id) {
+        return MealTemplateMapper.INSTANCE.map(mealTemplateService.activate(id));
+    }
+
+    @PostMapping("/{id}/deactivate")
+    public MealTemplateDTO deactivate(final @PathVariable Long id) {
+        return MealTemplateMapper.INSTANCE.map(mealTemplateService.deactivate(id));
     }
 }

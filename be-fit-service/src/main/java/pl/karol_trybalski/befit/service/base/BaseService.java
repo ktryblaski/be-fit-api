@@ -8,31 +8,31 @@ import pl.karol_trybalski.befit.persistence.base.BaseRepository;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class BaseService<T, ID> {
+public abstract class BaseService<E, R extends BaseRepository<E, ID>, ID> {
 
-    protected final BaseRepository<T, ID> repository;
+    protected final R repository;
 
-    public BaseService(final BaseRepository<T, ID> repository) {
+    public BaseService(final R repository) {
         this.repository = repository;
     }
 
-    public List<T> findAll() {
+    public List<E> findAll() {
         return this.repository.findAll();
     }
 
-    public List<T> findAll(final Sort sort) {
+    public List<E> findAll(final Sort sort) {
         return this.repository.findAll(sort);
     }
 
-    public Page<T> findAll(final Pageable pageable) {
+    public Page<E> findAll(final Pageable pageable) {
         return this.repository.findAll(pageable);
     }
 
-    public Optional<T> findById(final ID id) {
+    public Optional<E> findById(final ID id) {
         return this.repository.findById(id);
     }
 
-    public T getOne(final ID id) {
+    public E getOne(final ID id) {
         return this.repository.getOne(id);
     }
 }

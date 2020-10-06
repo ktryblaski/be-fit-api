@@ -18,7 +18,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class MealServiceImpl extends BaseService<Meal, Long> {
+public class MealServiceImpl extends BaseService<Meal, MealRepository, Long> {
 
     private final IngredientRepository ingredientRepository;
     private final ProductRepository productRepository;

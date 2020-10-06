@@ -2,9 +2,12 @@ package pl.karol_trybalski.befit.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import pl.karol_trybalski.befit.domain.entity.Ingredient;
 import pl.karol_trybalski.befit.domain.entity.Product;
 import pl.karol_trybalski.befit.domain.entity.meal_template.MealTemplate;
+import pl.karol_trybalski.befit.domain.exception.DomainError;
+import pl.karol_trybalski.befit.domain.exception.DomainException;
 import pl.karol_trybalski.befit.dto.dto.meal_template.MealTemplateCUDTO;
 import pl.karol_trybalski.befit.persistence.repository.*;
 import pl.karol_trybalski.befit.service.base.BaseService;
@@ -16,7 +19,8 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
-public class MealTemplateServiceImpl extends BaseService<MealTemplate, Long> {
+@Transactional
+public class MealTemplateServiceImpl extends BaseService<MealTemplate, MealTemplateRepository, Long> {
 
     private final IngredientRepository ingredientRepository;
     private final ProductRepository productRepository;
@@ -28,6 +32,13 @@ public class MealTemplateServiceImpl extends BaseService<MealTemplate, Long> {
         super(repository);
         this.ingredientRepository = ingredientRepository;
         this.productRepository = productRepository;
+    }
+
+    public List<MealTemplate> findAll(boolean onlyActive) {
+        System.out.println(onlyActive);
+        return onlyActive
+          ? repository.findByActiveTrue()
+          : findAll();
     }
 
     public Long create(MealTemplateCUDTO mealTemplate) {
@@ -47,6 +58,7 @@ public class MealTemplateServiceImpl extends BaseService<MealTemplate, Long> {
         m.setName(mealTemplate.getName());
         m.setDescription(mealTemplate.getDescription());
         m.setIngredients(ingredients);
+        m.setActive(true);
         m = repository.save(m);
 
         return m.getId();
@@ -57,6 +69,7 @@ public class MealTemplateServiceImpl extends BaseService<MealTemplate, Long> {
         MealTemplate m = repository.getOne(id);
         m.setName(meal.getName());
         m.setDescription(meal.getDescription());
+        m.setActive(meal.isActive());
 
         Set<Ingredient> ingredientsToSave = new HashSet<>();
         Map<Long, Integer> ingredientsMap = meal.getIngredients().stream().collect(
@@ -84,7 +97,31 @@ public class MealTemplateServiceImpl extends BaseService<MealTemplate, Long> {
 
         m.setIngredients(ingredientsToSave);
 
-        return repository.save(m);
+        return m;
+    }
+
+    public MealTemplate activate(Long id) {
+        MealTemplate mealTemplate = repository.getOne(id);
+
+        if(mealTemplate.isActive()) {
+            throw new DomainException(DomainError.MEAL_TEMPLATE_ALREADY_ACTIVE);
+        }
+
+        mealTemplate.setActive(true);
+
+        return mealTemplate;
+    }
+
+    public MealTemplate deactivate(Long id) {
+        MealTemplate mealTemplate = repository.getOne(id);
+
+        if(!mealTemplate.isActive()) {
+            throw new DomainException(DomainError.MEAL_TEMPLATE_ALREADY_INACTIVE);
+        }
+
+        mealTemplate.setActive(false);
+
+        return mealTemplate;
     }
 
 }

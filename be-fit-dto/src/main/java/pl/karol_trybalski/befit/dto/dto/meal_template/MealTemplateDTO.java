@@ -11,6 +11,7 @@ public class MealTemplateDTO extends BaseDTO {
 
     private String name;
     private String description;
+    private boolean active;
     private Set<Ingredient> ingredients;
 
 }
