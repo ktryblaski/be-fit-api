@@ -6,7 +6,10 @@ public enum DomainError {
     METHOD_NOT_FOUND("common.method_not_found"),
     METHOD_NOT_ALLOWED("common.method_not_allowed"),
     ENTITY_NOT_FOUND("common.entity_not_found"),
-    DATA_INTEGRITY_VIOLATION("domain.data_integrity_violation"),
+    DATA_INTEGRITY_VIOLATION("common.data_integrity_violation"),
+
+    // TODO
+    BAD_DATA("common.bad_data"),
 
     MEAL_TEMPLATE_ALREADY_ACTIVE("domain.meal_template.already_active"),
     MEAL_TEMPLATE_ALREADY_INACTIVE("domain.meal_template.already_inactive"),

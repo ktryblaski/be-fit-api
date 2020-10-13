@@ -3,8 +3,10 @@ package pl.karol_trybalski.befit.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import pl.karol_trybalski.befit.domain.entity.Ingredient;
 import pl.karol_trybalski.befit.domain.entity.Product;
+import pl.karol_trybalski.befit.domain.entity.base.BaseEntity;
 import pl.karol_trybalski.befit.domain.entity.meal_template.MealTemplate;
 import pl.karol_trybalski.befit.domain.exception.DomainError;
 import pl.karol_trybalski.befit.domain.exception.DomainException;
@@ -12,10 +14,7 @@ import pl.karol_trybalski.befit.dto.dto.meal_template.MealTemplateCUDTO;
 import pl.karol_trybalski.befit.persistence.repository.*;
 import pl.karol_trybalski.befit.service.base.BaseService;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,7 +34,6 @@ public class MealTemplateServiceImpl extends BaseService<MealTemplate, MealTempl
     }
 
     public List<MealTemplate> findAll(boolean onlyActive) {
-        System.out.println(onlyActive);
         return onlyActive
           ? repository.findByActiveTrue()
           : findAll();
@@ -64,40 +62,58 @@ public class MealTemplateServiceImpl extends BaseService<MealTemplate, MealTempl
         return m.getId();
     }
 
-    public MealTemplate update(Long id, MealTemplateCUDTO meal) {
+    public MealTemplate update(Long id, MealTemplateCUDTO mealTemplate) {
         // TODO handle id != meal.getId()
-        MealTemplate m = repository.getOne(id);
-        m.setName(meal.getName());
-        m.setDescription(meal.getDescription());
-        m.setActive(meal.isActive());
+        MealTemplate mt = repository.getOne(id);
+        mt.setName(mealTemplate.getName());
+        mt.setDescription(mealTemplate.getDescription());
+        // TODO do we want to update this here?
+        // mt.setActive(mealTemplate.isActive());
 
-        Set<Ingredient> ingredientsToSave = new HashSet<>();
-        Map<Long, Integer> ingredientsMap = meal.getIngredients().stream().collect(
-          Collectors.toMap(MealTemplateCUDTO.IngredientDTO::getProductId, MealTemplateCUDTO.IngredientDTO::getWeight)
-        );
-
-        for (Ingredient ingredient : m.getIngredients()) {
-            if(ingredientsMap.containsKey(ingredient.getId())) {
-                ingredient.setWeight(ingredientsMap.get(ingredient.getId()));
-                ingredientsToSave.add(ingredient);
-                ingredientsMap.remove(ingredient.getId());
+        // validate existing ingredients
+        if(CollectionUtils.isEmpty(mealTemplate.getIngredients())) {
+            throw new DomainException(DomainError.BAD_DATA);
+        }
+        Set<Long> oldIngredientIds = mt.getIngredients().stream().map(BaseEntity::getId).collect(Collectors.toSet());
+        for (MealTemplateCUDTO.IngredientDTO ingredient : mealTemplate.getIngredients()) {
+            if (ingredient.getId() != null && !oldIngredientIds.contains(ingredient.getId())) {
+                throw new DomainException(DomainError.BAD_DATA);
             }
         }
 
-        List<Product> products = productRepository.findAllById(ingredientsMap.keySet());
+        mt.setIngredients(new HashSet<>());
+
+        // update existing ingredients
+        Map<Long, MealTemplateCUDTO.IngredientDTO> existingIngredientsMap = mealTemplate.getIngredients().stream()
+          .filter(i -> i.getId() != null)
+          .collect(Collectors.toMap(MealTemplateCUDTO.IngredientDTO::getId, i -> i));
+
+        List<Ingredient> existingIngredients = ingredientRepository.findAllById(existingIngredientsMap.keySet());
+        for (Ingredient existingIngredient : existingIngredients) {
+            existingIngredient.setWeight(
+              existingIngredientsMap.get(existingIngredient.getId()).getWeight()
+            );
+        }
+        mt.getIngredients().addAll(existingIngredients);
+
+        // save new ingredients
+        Set<Long> productIdsForNewIngredients = mealTemplate.getIngredients().stream()
+          .filter(i -> i.getId() == null)
+          .map(MealTemplateCUDTO.IngredientDTO::getProductId)
+          .collect(Collectors.toSet());
+
+        List<Product> products = productRepository.findAllById(productIdsForNewIngredients);
         Map<Long, Product> productsMap = products.stream().collect(Collectors.toMap(Product::getId, p -> p));
+        mealTemplate.getIngredients().forEach(i -> {
+            if(i.getId() == null) {
+                Ingredient ingredient = ingredientRepository.save(
+                  Ingredient.builder().product(productsMap.get(i.getProductId())).weight(i.getWeight()).build()
+                );
+                mt.getIngredients().add(ingredient);
+            }
+        });
 
-        Set<Ingredient> newIngredients = ingredientsMap.entrySet().stream().map(entry -> ingredientRepository.save(
-                Ingredient.builder().
-                        product(productsMap.get(entry.getKey()))
-                        .weight(entry.getValue())
-                        .build()
-        )).collect(Collectors.toSet());
-        ingredientsToSave.addAll(newIngredients);
-
-        m.setIngredients(ingredientsToSave);
-
-        return m;
+        return mt;
     }
 
     public MealTemplate activate(Long id) {

@@ -43,7 +43,7 @@ INSERT INTO ingredient (id, product_id, weight) VALUES (1, 1, 120);
 INSERT INTO ingredient (id, product_id, weight) VALUES (2, 2, 200);
 INSERT INTO ingredient (id, product_id, weight) VALUES (3, 3, 70);
 INSERT INTO ingredient (id, product_id, weight) VALUES (4, 5, 30);
-INSERT INTO ingredient (id, product_id, weight) VALUES (5, 6, 1);
+INSERT INTO ingredient (id, product_id, weight) VALUES (5, 6, 10);
 
 INSERT INTO meal_template (id, name, description, active) VALUES (1, 'Ryżanka', 'Omniomniom', true);
 

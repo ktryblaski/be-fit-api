@@ -15,6 +15,7 @@ public class MealTemplateCUDTO extends BaseDTO {
 
     @Data
     public static class IngredientDTO {
+        private Long id;
         private Long productId;
         private Integer weight;
     }
