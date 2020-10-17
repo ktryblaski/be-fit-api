@@ -23,21 +23,21 @@ INSERT INTO macronutrients (id, carbohydrates, proteins, fats) VALUES (13, 74, 1
 INSERT INTO macronutrients (id, carbohydrates, proteins, fats) VALUES (14, 0, 0, 83);
 INSERT INTO macronutrients (id, carbohydrates, proteins, fats) VALUES (15, 0, 0, 92);
 
-INSERT INTO product (id, name, macronutrients_id) VALUES (1, 'Banan', 1);
-INSERT INTO product (id, name, macronutrients_id) VALUES (2, 'Mleko 2%', 2);
-INSERT INTO product (id, name, macronutrients_id) VALUES (3, 'Płatki ryżowe', 3);
-INSERT INTO product (id, name, macronutrients_id) VALUES (4, 'Płatki owsiane', 4);
-INSERT INTO product (id, name, macronutrients_id) VALUES (5, 'WPC 80%', 5);
-INSERT INTO product (id, name, macronutrients_id) VALUES (6, 'Masło orzechowe', 6);
-INSERT INTO product (id, name, macronutrients_id) VALUES (7, 'Bułka kajzerka', 7);
-INSERT INTO product (id, name, macronutrients_id) VALUES (8, 'Chleb żytni razowy', 8);
-INSERT INTO product (id, name, macronutrients_id) VALUES (9, 'Skittles', 9);
-INSERT INTO product (id, name, macronutrients_id) VALUES (10, 'Pierś z kurczaka', 10);
-INSERT INTO product (id, name, macronutrients_id) VALUES (11, 'Szynka z indyka', 11);
-INSERT INTO product (id, name, macronutrients_id) VALUES (12, 'Jaja', 12);
-INSERT INTO product (id, name, macronutrients_id) VALUES (13, 'Mąka pszenna 500', 13);
-INSERT INTO product (id, name, macronutrients_id) VALUES (14, 'Masło 83%', 14);
-INSERT INTO product (id, name, macronutrients_id) VALUES (15, 'Oliwa z oliwek', 15);
+INSERT INTO product (id, name, macronutrients_id, favourite) VALUES (1, 'Banan', 1, true);
+INSERT INTO product (id, name, macronutrients_id, favourite) VALUES (2, 'Mleko 2%', 2, false);
+INSERT INTO product (id, name, macronutrients_id, favourite) VALUES (3, 'Płatki ryżowe', 3, false);
+INSERT INTO product (id, name, macronutrients_id, favourite) VALUES (4, 'Płatki owsiane', 4, false);
+INSERT INTO product (id, name, macronutrients_id, favourite) VALUES (5, 'WPC 80%', 5, false);
+INSERT INTO product (id, name, macronutrients_id, favourite) VALUES (6, 'Masło orzechowe', 6, true);
+INSERT INTO product (id, name, macronutrients_id, favourite) VALUES (7, 'Bułka kajzerka', 7, false);
+INSERT INTO product (id, name, macronutrients_id, favourite) VALUES (8, 'Chleb żytni razowy', 8, false);
+INSERT INTO product (id, name, macronutrients_id, favourite) VALUES (9, 'Skittles', 9, false);
+INSERT INTO product (id, name, macronutrients_id, favourite) VALUES (10, 'Pierś z kurczaka', 10, true);
+INSERT INTO product (id, name, macronutrients_id, favourite) VALUES (11, 'Szynka z indyka', 11, false);
+INSERT INTO product (id, name, macronutrients_id, favourite) VALUES (12, 'Jaja', 12, false);
+INSERT INTO product (id, name, macronutrients_id, favourite) VALUES (13, 'Mąka pszenna 500', 13, true);
+INSERT INTO product (id, name, macronutrients_id, favourite) VALUES (14, 'Masło 83%', 14, false);
+INSERT INTO product (id, name, macronutrients_id, favourite) VALUES (15, 'Oliwa z oliwek', 15, false);
 
 INSERT INTO ingredient (id, product_id, weight) VALUES (1, 1, 120);
 INSERT INTO ingredient (id, product_id, weight) VALUES (2, 2, 200);

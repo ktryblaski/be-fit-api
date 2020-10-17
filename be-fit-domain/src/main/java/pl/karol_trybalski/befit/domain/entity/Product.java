@@ -11,6 +11,7 @@ import javax.persistence.*;
 public class Product extends BaseEntity {
 
     private String name;
+    private boolean favourite;
 
     @OneToOne
     @JoinColumn(name = "macronutrients_id")

@@ -35,4 +35,14 @@ public class ProductController {
         return ProductMapper.INSTANCE.map(productService.getOne(id));
     }
 
+    @PutMapping("/{id}/favourite")
+    public ProductDTO favourite(final @PathVariable Long id) {
+        return ProductMapper.INSTANCE.map(productService.favourite(id));
+    }
+
+    @PutMapping("/{id}/unfavourite")
+    public ProductDTO unfavourite(final @PathVariable Long id) {
+        return ProductMapper.INSTANCE.map(productService.unfavourite(id));
+    }
+
 }

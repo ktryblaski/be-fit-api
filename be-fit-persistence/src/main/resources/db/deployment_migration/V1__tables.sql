@@ -12,6 +12,7 @@ CREATE TABLE product
 (
     id INTEGER PRIMARY KEY DEFAULT nextval('product_seq'),
     name VARCHAR(128) NOT NULL UNIQUE,
+    favourite BOOLEAN NOT NULL DEFAULT false,
     macronutrients_id INTEGER NOT NULL REFERENCES macronutrients(id)
 );
 
