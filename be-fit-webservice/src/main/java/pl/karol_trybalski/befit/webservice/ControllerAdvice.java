@@ -4,12 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import pl.karol_trybalski.befit.domain.exception.DomainError;
+import pl.karol_trybalski.befit.domain.exception.DomainException;
 
 import javax.persistence.EntityNotFoundException;
 
@@ -44,6 +46,16 @@ public class ControllerAdvice {
     public ApiResponse<?> handleDataIntegrityViolation(DataIntegrityViolationException e) {
         LOGGER.error("An exception occurred!", e);
         return ApiResponse.from(DomainError.DATA_INTEGRITY_VIOLATION);
+    }
+
+    @ExceptionHandler(DomainException.class)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public ResponseEntity<ApiResponse<?>> handleDomainException(DomainException e) {
+        LOGGER.error("An exception occurred!", e);
+        return new ResponseEntity<>(
+          ApiResponse.from(e.error),
+          ResponseUtils.getHttpStatus(e.error)
+        );
     }
 
     @ExceptionHandler(Exception.class)

@@ -63,24 +63,12 @@ public class MealTemplateServiceImpl extends BaseService<MealTemplate, MealTempl
     }
 
     public MealTemplate update(Long id, MealTemplateCUDTO mealTemplate) {
-        // TODO handle id != meal.getId()
         MealTemplate mt = repository.getOne(id);
+
+        checkUpdate(id, mealTemplate, mt);
+
         mt.setName(mealTemplate.getName());
         mt.setDescription(mealTemplate.getDescription());
-        // TODO do we want to update this here?
-        // mt.setActive(mealTemplate.isActive());
-
-        // validate existing ingredients
-        if(CollectionUtils.isEmpty(mealTemplate.getIngredients())) {
-            throw new DomainException(DomainError.BAD_DATA);
-        }
-        Set<Long> oldIngredientIds = mt.getIngredients().stream().map(BaseEntity::getId).collect(Collectors.toSet());
-        for (MealTemplateCUDTO.IngredientDTO ingredient : mealTemplate.getIngredients()) {
-            if (ingredient.getId() != null && !oldIngredientIds.contains(ingredient.getId())) {
-                throw new DomainException(DomainError.BAD_DATA);
-            }
-        }
-
         mt.setIngredients(new HashSet<>());
 
         // update existing ingredients
@@ -114,6 +102,23 @@ public class MealTemplateServiceImpl extends BaseService<MealTemplate, MealTempl
         });
 
         return mt;
+    }
+
+    private void checkUpdate(Long id, MealTemplateCUDTO mealTemplate, MealTemplate mt) {
+        if(!id.equals(mealTemplate.getId())) {
+            throw new DomainException(DomainError.IDENTIFIERS_NOT_MATCH);
+        }
+
+        // validate existing ingredients
+        if(CollectionUtils.isEmpty(mealTemplate.getIngredients())) {
+            throw new DomainException(DomainError.MEAL_TEMPLATE_NO_INGREDIENTS);
+        }
+        Set<Long> oldIngredientIds = mt.getIngredients().stream().map(BaseEntity::getId).collect(Collectors.toSet());
+        for (MealTemplateCUDTO.IngredientDTO ingredient : mealTemplate.getIngredients()) {
+            if (ingredient.getId() != null && !oldIngredientIds.contains(ingredient.getId())) {
+                throw new DomainException(DomainError.MEAL_TEMPLATE_GIVEN_INGREDIENT_NOT_EXIST);
+            }
+        }
     }
 
     public MealTemplate activate(Long id) {

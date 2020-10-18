@@ -8,8 +8,4 @@ public class DomainException extends RuntimeException {
         this.error = error;
     }
 
-    public DomainException(Throwable cause, DomainError error) {
-        super(cause);
-        this.error = error;
-    }
 }
