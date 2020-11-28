@@ -4,6 +4,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import pl.karol_trybalski.befit.persistence.base.BaseRepository;
+import pl.karol_trybalski.befit.service.util.sort.SortField;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,14 +19,6 @@ public abstract class BaseService<E, R extends BaseRepository<E, ID>, ID> {
 
     public List<E> findAll() {
         return this.repository.findAll();
-    }
-
-    public List<E> findAll(final Sort sort) {
-        return this.repository.findAll(sort);
-    }
-
-    public Page<E> findAll(final Pageable pageable) {
-        return this.repository.findAll(pageable);
     }
 
     public Optional<E> findById(final ID id) {

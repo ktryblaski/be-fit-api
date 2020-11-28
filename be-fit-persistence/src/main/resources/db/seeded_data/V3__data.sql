@@ -70,3 +70,19 @@ INSERT INTO meal_ingredient (meal_id, ingredient_id) VALUES (1, 15);
 INSERT INTO day_of_eating (id, day_date) VALUES (1, '2020-10-07');
 
 INSERT INTO day_of_eating_meal (day_of_eating_id, meal_id) VALUES (1, 1);
+
+INSERT INTO ingredient (id, product_id, weight) VALUES (111, 4, 80);
+INSERT INTO ingredient (id, product_id, weight) VALUES (112, 5, 20);
+INSERT INTO ingredient (id, product_id, weight) VALUES (113, 6, 20);
+INSERT INTO ingredient (id, product_id, weight) VALUES (114, 1, 120);
+INSERT INTO ingredient (id, product_id, weight) VALUES (115, 9, 10);
+
+INSERT INTO meal (id, name, description) VALUES (2, 'Owsianka', 'Posiłek na ciepło');
+
+INSERT INTO meal_ingredient (meal_id, ingredient_id) VALUES (2, 111);
+INSERT INTO meal_ingredient (meal_id, ingredient_id) VALUES (2, 112);
+INSERT INTO meal_ingredient (meal_id, ingredient_id) VALUES (2, 113);
+INSERT INTO meal_ingredient (meal_id, ingredient_id) VALUES (2, 114);
+INSERT INTO meal_ingredient (meal_id, ingredient_id) VALUES (2, 115);
+
+INSERT INTO day_of_eating_meal (day_of_eating_id, meal_id) VALUES (1, 2);

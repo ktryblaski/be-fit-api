@@ -1,5 +1,6 @@
 package pl.karol_trybalski.befit.service;
 
+import com.google.common.collect.ImmutableMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -8,41 +9,56 @@ import pl.karol_trybalski.befit.persistence.repository.MacronutrientsRepository;
 import pl.karol_trybalski.befit.service.base.BaseService;
 import pl.karol_trybalski.befit.domain.entity.Product;
 import pl.karol_trybalski.befit.persistence.repository.ProductRepository;
+import pl.karol_trybalski.befit.service.util.sort.SortField;
+import pl.karol_trybalski.befit.service.util.sort.SortUtils;
+
+import java.util.List;
+import java.util.Map;
 
 @Service
 @Transactional
 public class ProductServiceImpl extends BaseService<Product, ProductRepository, Long> {
 
-    final MacronutrientsRepository macronutrientsRepository;
+  private static final Map<String, String> SORT_COLUMN_BY_SORT_FIELD = ImmutableMap.of(
+    "NAME", "name"
+  );
 
-    @Autowired
-    public ProductServiceImpl(final ProductRepository repository,
-                              final MacronutrientsRepository macronutrientsRepository) {
-        super(repository);
-        this.macronutrientsRepository = macronutrientsRepository;
-    }
+  final MacronutrientsRepository macronutrientsRepository;
 
-    public Long save(Product product) {
-        Macronutrients savedMacronutrients = this.macronutrientsRepository.save(product.getMacronutrients());
+  @Autowired
+  public ProductServiceImpl(final ProductRepository repository,
+                            final MacronutrientsRepository macronutrientsRepository) {
+    super(repository);
+    this.macronutrientsRepository = macronutrientsRepository;
+  }
 
-        product.setMacronutrients(savedMacronutrients);
-        Product savedProduct = this.repository.save(product);
+  public List<Product> findAll(final List<SortField> sortFields) {
+    return this.repository.findAll(
+      SortUtils.buildSort(sortFields, SORT_COLUMN_BY_SORT_FIELD)
+    );
+  }
 
-        return savedProduct.getId();
-    }
+  public Long save(Product product) {
+    Macronutrients savedMacronutrients = this.macronutrientsRepository.save(product.getMacronutrients());
 
-    public Product favourite(Long id) {
-        Product product = getOne(id);
-        product.setFavourite(true);
+    product.setMacronutrients(savedMacronutrients);
+    Product savedProduct = this.repository.save(product);
 
-        return product;
-    }
+    return savedProduct.getId();
+  }
 
-    public Product unfavourite(Long id) {
-        Product product = getOne(id);
-        product.setFavourite(false);
+  public Product favourite(Long id) {
+    Product product = getOne(id);
+    product.setFavourite(true);
 
-        return product;
-    }
+    return product;
+  }
+
+  public Product unfavourite(Long id) {
+    Product product = getOne(id);
+    product.setFavourite(false);
+
+    return product;
+  }
 
 }

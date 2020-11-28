@@ -1,6 +1,7 @@
 package pl.karol_trybalski.befit.webservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
 import pl.karol_trybalski.befit.dto.dto.ProductDTO;
 import pl.karol_trybalski.befit.dto.mapper.ProductMapper;
@@ -8,6 +9,8 @@ import pl.karol_trybalski.befit.service.ProductServiceImpl;
 
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static pl.karol_trybalski.befit.webservice.util.SortUtils.buildSortFields;
 
 @RestController
 @RequestMapping(path = "/products")
@@ -21,8 +24,10 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<ProductDTO> list() {
-        return productService.findAll().stream().map(ProductMapper.INSTANCE::map).collect(Collectors.toList());
+    public List<ProductDTO> list(@RequestParam MultiValueMap<String, String> params) {
+        return productService.findAll(buildSortFields(params)).stream()
+          .map(ProductMapper.INSTANCE::map)
+          .collect(Collectors.toList());
     }
 
     @PostMapping
