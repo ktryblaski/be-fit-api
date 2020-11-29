@@ -1,6 +1,7 @@
-package pl.karol_trybalski.befit.dto.dto;
+package pl.karol_trybalski.befit.dto.dto.product;
 
 import lombok.Data;
+import pl.karol_trybalski.befit.dto.dto.MacronutrientsDTO;
 import pl.karol_trybalski.befit.dto.dto.base.BaseDTO;
 
 @Data

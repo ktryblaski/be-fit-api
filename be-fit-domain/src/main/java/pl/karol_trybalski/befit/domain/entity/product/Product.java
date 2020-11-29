@@ -1,6 +1,7 @@
-package pl.karol_trybalski.befit.domain.entity;
+package pl.karol_trybalski.befit.domain.entity.product;
 
 import lombok.Data;
+import pl.karol_trybalski.befit.domain.entity.Macronutrients;
 import pl.karol_trybalski.befit.domain.entity.base.BaseEntity;
 
 import javax.persistence.*;

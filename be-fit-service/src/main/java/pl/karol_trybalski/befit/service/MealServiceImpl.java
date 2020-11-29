@@ -4,11 +4,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.karol_trybalski.befit.domain.entity.Ingredient;
 import pl.karol_trybalski.befit.domain.entity.meal.Meal;
-import pl.karol_trybalski.befit.domain.entity.Product;
+import pl.karol_trybalski.befit.domain.entity.product.Product;
 import pl.karol_trybalski.befit.dto.dto.meal.MealCUDTO;
 import pl.karol_trybalski.befit.persistence.repository.IngredientRepository;
 import pl.karol_trybalski.befit.persistence.repository.MealRepository;
-import pl.karol_trybalski.befit.persistence.repository.ProductRepository;
+import pl.karol_trybalski.befit.persistence.repository.product.ProductRepository;
 import pl.karol_trybalski.befit.service.base.BaseService;
 
 import java.util.HashSet;

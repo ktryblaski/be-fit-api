@@ -1,10 +1,6 @@
 package pl.karol_trybalski.befit.service.base;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import pl.karol_trybalski.befit.persistence.base.BaseRepository;
-import pl.karol_trybalski.befit.service.util.sort.SortField;
 
 import java.util.List;
 import java.util.Optional;

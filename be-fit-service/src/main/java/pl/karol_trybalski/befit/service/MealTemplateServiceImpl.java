@@ -5,13 +5,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import pl.karol_trybalski.befit.domain.entity.Ingredient;
-import pl.karol_trybalski.befit.domain.entity.Product;
+import pl.karol_trybalski.befit.domain.entity.product.Product;
 import pl.karol_trybalski.befit.domain.entity.base.BaseEntity;
 import pl.karol_trybalski.befit.domain.entity.meal_template.MealTemplate;
 import pl.karol_trybalski.befit.domain.exception.DomainError;
 import pl.karol_trybalski.befit.domain.exception.DomainException;
 import pl.karol_trybalski.befit.dto.dto.meal_template.MealTemplateCUDTO;
 import pl.karol_trybalski.befit.persistence.repository.*;
+import pl.karol_trybalski.befit.persistence.repository.product.ProductRepository;
 import pl.karol_trybalski.befit.service.base.BaseService;
 
 import java.util.*;

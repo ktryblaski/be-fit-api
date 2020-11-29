@@ -2,20 +2,40 @@ package pl.karol_trybalski.befit.webservice.util;
 
 import org.springframework.util.MultiValueMap;
 import org.springframework.util.StringUtils;
+import pl.karol_trybalski.befit.service.util.pagination.Pagination;
 import pl.karol_trybalski.befit.service.util.sort.SortDirection;
 import pl.karol_trybalski.befit.service.util.sort.SortField;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class SortUtils {
+public class PageUtils {
 
+  private static final String PAGE = "page";
+  private static final String PAGE_SIZE = "pageSize";
   private static final String SORT = "sort";
   private static final String SORT_SEPARATOR = ",";
 
-  private SortUtils() { }
+  private PageUtils() { }
 
-  public static List<SortField> buildSortFields(MultiValueMap<String, String> params) {
+  public static Pagination buildPagination(MultiValueMap<String, String> params) {
+    Integer page = null;
+    Integer pageSize = null;
+    List<SortField> sortFields = buildSortFields(params);
+
+    if(params.containsKey(PAGE) && params.containsKey(PAGE_SIZE)) {
+      try {
+        page = Integer.valueOf(params.getFirst(PAGE));
+        pageSize = Integer.valueOf(params.getFirst(PAGE_SIZE));
+      } catch (Exception ignored) {
+        // TODO what to do in that case?
+      }
+    }
+
+    return new Pagination(page, pageSize, sortFields);
+  }
+
+  private static List<SortField> buildSortFields(MultiValueMap<String, String> params) {
     if(params == null || !StringUtils.hasText(params.getFirst(SORT))) {
       return new ArrayList<>();
     }

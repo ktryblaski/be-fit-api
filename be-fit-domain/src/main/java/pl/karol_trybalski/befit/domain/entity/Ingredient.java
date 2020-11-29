@@ -5,6 +5,7 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import pl.karol_trybalski.befit.domain.entity.base.BaseEntity;
+import pl.karol_trybalski.befit.domain.entity.product.Product;
 
 import javax.persistence.*;
 

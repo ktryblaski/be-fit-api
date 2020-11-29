@@ -11,8 +11,8 @@ import javax.persistence.Table;
 @Table(name = "macronutrients")
 public class Macronutrients extends BaseEntity {
 
-    private int carbohydrates;
     private int proteins;
     private int fats;
+    private int carbohydrates;
 
 }

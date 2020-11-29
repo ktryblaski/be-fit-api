@@ -22,3 +22,15 @@ GROUP BY dof.id;
 --          LEFT JOIN macronutrients ma ON d.macronutrients_id = ma.id
 --          LEFT JOIN diet_meal dm ON dm.diet_id = d.id
 -- GROUP BY d.id, ma.id;
+
+CREATE VIEW v_product AS
+SELECT
+    p.id,
+    p.name,
+    p.favourite,
+    m.proteins,
+    m.fats,
+    m.carbohydrates,
+    (m.proteins*4 + m.fats*9 + m.carbohydrates*4) AS calories
+FROM product p
+LEFT JOIN macronutrients m on p.macronutrients_id = m.id;

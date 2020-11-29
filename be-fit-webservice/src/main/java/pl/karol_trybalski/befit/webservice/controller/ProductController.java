@@ -1,16 +1,16 @@
 package pl.karol_trybalski.befit.webservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
-import pl.karol_trybalski.befit.dto.dto.ProductDTO;
+import pl.karol_trybalski.befit.dto.dto.product.ProductDTO;
+import pl.karol_trybalski.befit.dto.dto.product.ProductViewDTO;
 import pl.karol_trybalski.befit.dto.mapper.ProductMapper;
-import pl.karol_trybalski.befit.service.ProductServiceImpl;
+import pl.karol_trybalski.befit.service.product.ProductServiceImpl;
+import pl.karol_trybalski.befit.service.util.pagination.Pagination;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
-import static pl.karol_trybalski.befit.webservice.util.SortUtils.buildSortFields;
+import static pl.karol_trybalski.befit.webservice.util.PageUtils.buildPagination;
 
 @RestController
 @RequestMapping(path = "/products")
@@ -24,10 +24,9 @@ public class ProductController {
     }
 
     @GetMapping
-    public List<ProductDTO> list(@RequestParam MultiValueMap<String, String> params) {
-        return productService.findAll(buildSortFields(params)).stream()
-          .map(ProductMapper.INSTANCE::map)
-          .collect(Collectors.toList());
+    public Page<ProductViewDTO> list(@RequestParam MultiValueMap<String, String> params) {
+        Pagination pagination = buildPagination(params);
+        return productService.findAll(pagination).map(ProductMapper.INSTANCE::map);
     }
 
     @PostMapping
@@ -37,7 +36,7 @@ public class ProductController {
 
     @GetMapping("/{id}")
     public ProductDTO get(final @PathVariable Long id) {
-        return ProductMapper.INSTANCE.map(productService.getOne(id));
+        return ProductMapper.INSTANCE.map(productService.get(id));
     }
 
     @PutMapping("/{id}/favourite")
