@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.karol_trybalski.befit.domain.entity.Ingredient;
 import pl.karol_trybalski.befit.domain.entity.meal.Meal;
-import pl.karol_trybalski.befit.domain.entity.product.Product;
+import pl.karol_trybalski.befit.domain.module.product.Product;
 import pl.karol_trybalski.befit.dto.dto.meal.MealCUDTO;
 import pl.karol_trybalski.befit.persistence.repository.IngredientRepository;
 import pl.karol_trybalski.befit.persistence.repository.MealRepository;

@@ -1,4 +1,4 @@
-package pl.karol_trybalski.befit.webservice;
+package pl.karol_trybalski.befit.webservice.util;
 
 import com.google.common.collect.ImmutableMap;
 import org.springframework.http.HttpStatus;
@@ -11,6 +11,7 @@ import static com.google.common.collect.Sets.newHashSet;
 import static pl.karol_trybalski.befit.domain.exception.DomainError.*;
 import static org.springframework.http.HttpStatus.*;
 
+// TODO - think how to make this prettier and more elegant
 public class ResponseUtils {
 
   private static final Map<HttpStatus, Set<DomainError>> HTTP_STATUS_TO_DOMAIN_ERROR = ImmutableMap.<HttpStatus, Set<DomainError>>builder()

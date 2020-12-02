@@ -2,8 +2,8 @@ package pl.karol_trybalski.befit.dto.mapper;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
-import pl.karol_trybalski.befit.domain.entity.product.Product;
-import pl.karol_trybalski.befit.domain.entity.product.ProductView;
+import pl.karol_trybalski.befit.domain.module.product.Product;
+import pl.karol_trybalski.befit.domain.module.product.ProductView;
 import pl.karol_trybalski.befit.dto.dto.product.ProductDTO;
 import pl.karol_trybalski.befit.dto.dto.product.ProductViewDTO;
 

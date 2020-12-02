@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import pl.karol_trybalski.befit.domain.entity.Ingredient;
-import pl.karol_trybalski.befit.domain.entity.product.Product;
+import pl.karol_trybalski.befit.domain.module.product.Product;
 import pl.karol_trybalski.befit.domain.entity.base.BaseEntity;
 import pl.karol_trybalski.befit.domain.entity.meal_template.MealTemplate;
 import pl.karol_trybalski.befit.domain.exception.DomainError;

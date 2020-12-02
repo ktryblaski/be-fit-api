@@ -5,6 +5,9 @@ import pl.karol_trybalski.befit.persistence.base.BaseRepository;
 import java.util.List;
 import java.util.Optional;
 
+// TODO should be removed in future
+// DO NOT USE this class as a parent class of any service. It is not needed!
+@Deprecated
 public abstract class BaseService<E, R extends BaseRepository<E, ID>, ID> {
 
     protected final R repository;

@@ -1,11 +1,17 @@
 package pl.karol_trybalski.befit.service.util.sort;
 
-import lombok.AllArgsConstructor;
+public class SortField<E extends Enum<E>> {
 
-@AllArgsConstructor
-public class SortField {
+  public static <T extends Enum<T>> SortField<T> of(T sortBy, SortDirection sortDirection) {
+    return new SortField<>(sortBy, sortDirection);
+  }
 
-  public final String sortBy;
+  public final E sortBy;
   public final SortDirection sortDirection;
+
+  private SortField(E sortBy, SortDirection sortDirection) {
+    this.sortBy = sortBy;
+    this.sortDirection = sortDirection;
+  }
 
 }
