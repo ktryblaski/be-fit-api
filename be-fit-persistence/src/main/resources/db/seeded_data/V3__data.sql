@@ -4,8 +4,6 @@ ALTER SEQUENCE ingredient_seq RESTART WITH 1000;
 ALTER SEQUENCE meal_seq RESTART WITH 1000;
 ALTER SEQUENCE meal_template_seq RESTART WITH 1000;
 ALTER SEQUENCE day_of_eating_seq RESTART WITH 1000;
--- ALTER SEQUENCE diet_meal_seq RESTART WITH 1000;
--- ALTER SEQUENCE diet_seq RESTART WITH 1000;
 
 INSERT INTO macronutrients (id, carbohydrates, proteins, fats) VALUES (1, 20, 1, 0);
 INSERT INTO macronutrients (id, carbohydrates, proteins, fats) VALUES (2, 5, 3, 2);

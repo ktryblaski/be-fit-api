@@ -68,24 +68,3 @@ CREATE TABLE day_of_eating_meal
     meal_id INTEGER NOT NULL REFERENCES meal(id),
     UNIQUE (day_of_eating_id, meal_id)
 );
-
-
--- CREATE SEQUENCE diet_seq START 1;
--- CREATE TABLE diet (
---     id INTEGER PRIMARY KEY DEFAULT nextval('diet_seq'),
---     name VARCHAR(128) NOT NULL UNIQUE,
---     description VARCHAR(1024),
---     start_date DATE,
---     end_date DATE,
---     type VARCHAR(32),
---     macronutrients_id INTEGER NOT NULL REFERENCES macronutrients(id)
--- );
---
--- CREATE SEQUENCE diet_meal_seq START 1;
--- CREATE TABLE diet_meal (
---     id INTEGER PRIMARY KEY DEFAULT nextval('diet_meal_seq'),
---     meal_type VARCHAR(32),
---     diet_id INTEGER NOT NULL REFERENCES diet(id),
---     meal_id INTEGER NOT NULL REFERENCES meal(id),
---     UNIQUE (diet_id, meal_id)
--- );
