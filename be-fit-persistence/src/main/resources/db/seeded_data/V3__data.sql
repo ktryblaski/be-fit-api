@@ -2,7 +2,7 @@ ALTER SEQUENCE macronutrients_seq RESTART WITH 1000;
 ALTER SEQUENCE product_seq RESTART WITH 1000;
 ALTER SEQUENCE ingredient_seq RESTART WITH 1000;
 ALTER SEQUENCE meal_seq RESTART WITH 1000;
-ALTER SEQUENCE meal_template_seq RESTART WITH 1000;
+ALTER SEQUENCE recipe_seq RESTART WITH 1000;
 ALTER SEQUENCE day_of_eating_seq RESTART WITH 1000;
 
 INSERT INTO macronutrients (id, carbohydrates, proteins, fats) VALUES (1, 20, 1, 0);
@@ -43,13 +43,13 @@ INSERT INTO ingredient (id, product_id, weight) VALUES (3, 3, 70);
 INSERT INTO ingredient (id, product_id, weight) VALUES (4, 5, 30);
 INSERT INTO ingredient (id, product_id, weight) VALUES (5, 6, 10);
 
-INSERT INTO meal_template (id, name, description, active) VALUES (1, 'Ryżanka', 'Omniomniom', true);
+INSERT INTO recipe (id, name, description, active) VALUES (1, 'Ryżanka', 'Omniomniom', true);
 
-INSERT INTO meal_template_ingredient (meal_template_id, ingredient_id) VALUES (1, 1);
-INSERT INTO meal_template_ingredient (meal_template_id, ingredient_id) VALUES (1, 2);
-INSERT INTO meal_template_ingredient (meal_template_id, ingredient_id) VALUES (1, 3);
-INSERT INTO meal_template_ingredient (meal_template_id, ingredient_id) VALUES (1, 4);
-INSERT INTO meal_template_ingredient (meal_template_id, ingredient_id) VALUES (1, 5);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 1);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 2);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 3);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 4);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 5);
 
 INSERT INTO ingredient (id, product_id, weight) VALUES (11, 1, 120);
 INSERT INTO ingredient (id, product_id, weight) VALUES (12, 2, 200);

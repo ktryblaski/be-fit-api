@@ -9,10 +9,10 @@ public enum DomainError {
     DATA_INTEGRITY_VIOLATION("common.data_integrity_violation"),
     IDENTIFIERS_NOT_MATCH("common.identifiers_not_match"),
 
-    MEAL_TEMPLATE_NO_INGREDIENTS("domain.meal_template.no_ingredients"),
-    MEAL_TEMPLATE_ALREADY_ACTIVE("domain.meal_template.already_active"),
-    MEAL_TEMPLATE_ALREADY_INACTIVE("domain.meal_template.already_inactive"),
-    MEAL_TEMPLATE_GIVEN_INGREDIENT_NOT_EXIST("domain.meal_template.given_ingredient_not_exist"),
+    RECIPE_NO_INGREDIENTS("domain.recipe.no_ingredients"),
+    RECIPE_ALREADY_ACTIVE("domain.recipe.already_active"),
+    RECIPE_ALREADY_INACTIVE("domain.recipe.already_inactive"),
+    RECIPE_GIVEN_INGREDIENT_NOT_EXIST("domain.recipe.given_ingredient_not_exist"),
 
     DAY_OF_EATING_DAY_ALREADY_BEGAN("domain.day_of_eating.day_already_began"),
     DAY_OF_EATING_INVALID_CREATION_DATA("domain.day_of_eating.invalid_creation_data"),

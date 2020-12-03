@@ -24,20 +24,20 @@ CREATE TABLE ingredient
     weight INTEGER NOT NULL
 );
 
-CREATE SEQUENCE meal_template_seq START 1;
-CREATE TABLE meal_template
+CREATE SEQUENCE recipe_seq START 1;
+CREATE TABLE recipe
 (
-    id INTEGER PRIMARY KEY DEFAULT nextval('meal_template_seq'),
+    id INTEGER PRIMARY KEY DEFAULT nextval('recipe_seq'),
     name VARCHAR(128) NOT NULL UNIQUE,
     description VARCHAR(1024),
     active BOOLEAN NOT NULL DEFAULT true
 );
 
-CREATE TABLE meal_template_ingredient
+CREATE TABLE recipe_ingredient
 (
-    meal_template_id INTEGER NOT NULL REFERENCES meal_template(id),
+    recipe_id INTEGER NOT NULL REFERENCES recipe(id),
     ingredient_id INTEGER NOT NULL REFERENCES ingredient(id),
-    UNIQUE (meal_template_id, ingredient_id)
+    UNIQUE (recipe_id, ingredient_id)
 );
 
 CREATE SEQUENCE meal_seq START 1;
