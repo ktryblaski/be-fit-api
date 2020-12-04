@@ -27,7 +27,10 @@ SELECT
     COALESCE(SUM(i.weight), 0) AS weight,
     COALESCE(SUM(i.weight / 100.0 * m.proteins), 0) AS proteins,
     COALESCE(SUM(i.weight / 100.0 * m.fats), 0) AS fats,
-    COALESCE(SUM(i.weight / 100.0 * m.carbohydrates), 0) AS carbohydrates
+    COALESCE(SUM(i.weight / 100.0 * m.carbohydrates), 0) AS carbohydrates,
+    4 * COALESCE(SUM(i.weight / 100.0 * m.proteins), 0)
+        + 9 * COALESCE(SUM(i.weight / 100.0 * m.fats), 0)
+        + 4 * COALESCE(SUM(i.weight / 100.0 * m.carbohydrates), 0) AS calories
 FROM recipe r
 LEFT JOIN recipe_ingredient ri ON ri.recipe_id = r.id
 LEFT JOIN ingredient i ON i.id = ri.ingredient_id

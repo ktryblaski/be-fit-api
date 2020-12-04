@@ -11,6 +11,7 @@ public enum RecipeSortBy {
   PROTEINS("proteins"),
   FATS("fats"),
   CARBOHYDRATES("carbohydrates"),
+  CALORIES("calories"),
   ;
 
   public static Function<RecipeSortBy, String> GET_COLUMN = p -> p.column;

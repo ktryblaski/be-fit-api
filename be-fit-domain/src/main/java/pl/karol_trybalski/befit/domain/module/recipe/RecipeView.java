@@ -18,5 +18,6 @@ public class RecipeView extends BaseEntity {
   private double proteins;
   private double fats;
   private double carbohydrates;
+  private double calories;
 
 }
