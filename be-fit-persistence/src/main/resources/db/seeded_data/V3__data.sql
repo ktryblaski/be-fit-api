@@ -51,6 +51,14 @@ INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 3);
 INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 4);
 INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (1, 5);
 
+INSERT INTO recipe (id, name, description, active) VALUES (2, 'Owsianka', 'Posiłek na ciepło', true);
+
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (2, 1);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (2, 2);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (2, 3);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (2, 4);
+INSERT INTO recipe_ingredient (recipe_id, ingredient_id) VALUES (2, 5);
+
 INSERT INTO ingredient (id, product_id, weight) VALUES (11, 1, 120);
 INSERT INTO ingredient (id, product_id, weight) VALUES (12, 2, 200);
 INSERT INTO ingredient (id, product_id, weight) VALUES (13, 3, 70);

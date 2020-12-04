@@ -1,6 +1,8 @@
 package pl.karol_trybalski.befit.service.recipe;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -10,35 +12,47 @@ import pl.karol_trybalski.befit.domain.entity.base.BaseEntity;
 import pl.karol_trybalski.befit.domain.module.recipe.Recipe;
 import pl.karol_trybalski.befit.domain.exception.DomainError;
 import pl.karol_trybalski.befit.domain.exception.DomainException;
+import pl.karol_trybalski.befit.domain.module.recipe.RecipeSortBy;
+import pl.karol_trybalski.befit.domain.module.recipe.RecipeView;
 import pl.karol_trybalski.befit.dto.dto.recipe.RecipeCUDTO;
 import pl.karol_trybalski.befit.persistence.repository.*;
 import pl.karol_trybalski.befit.persistence.repository.product.ProductRepository;
 import pl.karol_trybalski.befit.persistence.repository.recipe.RecipeRepository;
-import pl.karol_trybalski.befit.service.base.BaseService;
+import pl.karol_trybalski.befit.persistence.repository.recipe.RecipeViewRepository;
+import pl.karol_trybalski.befit.service.util.pagination.Pagination;
+import pl.karol_trybalski.befit.service.util.pagination.PaginationUtils;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
 @Transactional
-public class RecipeServiceImpl extends BaseService<Recipe, RecipeRepository, Long> {
+public class RecipeServiceImpl {
 
+    private final RecipeRepository repository;
+    private final RecipeViewRepository viewRepository;
     private final IngredientRepository ingredientRepository;
     private final ProductRepository productRepository;
 
     @Autowired
     public RecipeServiceImpl(final RecipeRepository repository,
+                             final RecipeViewRepository viewRepository,
                              final IngredientRepository ingredientRepository,
                              final ProductRepository productRepository) {
-        super(repository);
+
+        this.repository = repository;
+        this.viewRepository = viewRepository;
         this.ingredientRepository = ingredientRepository;
         this.productRepository = productRepository;
     }
 
-    public List<Recipe> findAll(boolean onlyActive) {
-        return onlyActive
-          ? repository.findByActiveTrue()
-          : findAll();
+    public Page<RecipeView> findAll(final Pagination<RecipeSortBy> pagination) {
+        Pageable pageable = PaginationUtils.buildPageable(pagination, RecipeSortBy.GET_COLUMN);
+        return viewRepository.findAll(pageable);
+    }
+
+    public Recipe getOne(Long id) {
+        return repository.getOne(id);
     }
 
     public Long create(RecipeCUDTO recipe) {

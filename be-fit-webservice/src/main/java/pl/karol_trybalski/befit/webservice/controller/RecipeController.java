@@ -1,14 +1,17 @@
 package pl.karol_trybalski.befit.webservice.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
+import pl.karol_trybalski.befit.domain.module.recipe.RecipeSortBy;
 import pl.karol_trybalski.befit.dto.dto.recipe.RecipeCUDTO;
 import pl.karol_trybalski.befit.dto.dto.recipe.RecipeDTO;
+import pl.karol_trybalski.befit.dto.dto.recipe.RecipeViewDTO;
 import pl.karol_trybalski.befit.dto.mapper.RecipeMapper;
 import pl.karol_trybalski.befit.service.recipe.RecipeServiceImpl;
-
-import java.util.List;
-import java.util.stream.Collectors;
+import pl.karol_trybalski.befit.service.util.pagination.Pagination;
+import pl.karol_trybalski.befit.webservice.util.PaginationUtils;
 
 @RestController
 @RequestMapping(path = "/recipes")
@@ -22,8 +25,9 @@ public class RecipeController {
     }
 
     @GetMapping
-    public List<RecipeDTO> findAll(@RequestParam(defaultValue = "false") boolean onlyActive) {
-        return recipeService.findAll(onlyActive).stream().map(RecipeMapper.INSTANCE::map).collect(Collectors.toList());
+    public Page<RecipeViewDTO> findAll(@RequestParam MultiValueMap<String, String> params) {
+        Pagination<RecipeSortBy> pagination = PaginationUtils.buildPagination(params, RecipeSortBy.class);
+        return recipeService.findAll(pagination).map(RecipeMapper.INSTANCE::map);
     }
 
     @GetMapping("/{id}")
