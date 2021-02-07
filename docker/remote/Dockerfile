@@ -1,10 +1,7 @@
-ARG OPENJDK_VERSION
+# test build
+FROM openjdk:8u262-slim AS build
 
-# BUILD
-FROM openjdk:$OPENJDK_VERSION AS build
-
-RUN mkdir code
-WORKDIR code
+WORKDIR /code
 
 COPY mvnw                               .
 COPY .mvn                               .mvn
@@ -20,8 +17,8 @@ RUN ./mvnw dependency:go-offline
 COPY . .
 RUN ./mvnw clean package spring-boot:repackage
 
-# RUN
-FROM openjdk:$OPENJDK_VERSION
+# run
+FROM openjdk:8u262-slim
 
 RUN useradd -m befit
 USER befit
