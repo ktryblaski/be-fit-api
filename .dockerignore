@@ -4,3 +4,9 @@
 **/dist
 **/target
 
+bin
+.git
+
+.dockerignore
+.gitignore
+README.md
