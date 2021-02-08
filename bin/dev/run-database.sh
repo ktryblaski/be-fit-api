@@ -1,6 +1,6 @@
 #!/bin/bash
 
-DB_NAME="be-fit"
+DB_NAME="befit"
 DB_USER="postgres"
 DB_PASSWORD="qwerty123456"
 
@@ -9,7 +9,7 @@ HOST_PORT=15432
 VOLUME_NAME="be-fit-api-db-data"
 CONTAINER_NAME="be-fit-api-db"
 
-POSTGRES_VERSION="12.3"
+POSTGRES_VERSION="13.1-alpine"
 
 if [[ "$1" = "--reset" ]]; then
   if [[ -n "$(docker container ls -a | grep ${CONTAINER_NAME})" ]]; then
