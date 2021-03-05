@@ -1,4 +1,4 @@
-package pl.karol_trybalski.befit.webservice.controller;
+package pl.karol_trybalski.befit.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,7 +11,7 @@ import pl.karol_trybalski.befit.dto.mapper.ProductMapper;
 import pl.karol_trybalski.befit.service.product.ProductServiceImpl;
 import pl.karol_trybalski.befit.service.util.pagination.Pagination;
 
-import static pl.karol_trybalski.befit.webservice.util.PaginationUtils.buildPagination;
+import static pl.karol_trybalski.befit.api.util.PaginationUtils.buildPagination;
 
 @RestController
 @RequestMapping(path = "/products")

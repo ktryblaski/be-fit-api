@@ -1,4 +1,4 @@
-package pl.karol_trybalski.befit.webservice.util;
+package pl.karol_trybalski.befit.api.util;
 
 import com.google.common.collect.ImmutableMap;
 import org.springframework.http.HttpStatus;
@@ -8,8 +8,8 @@ import java.util.Map;
 import java.util.Set;
 
 import static com.google.common.collect.Sets.newHashSet;
-import static pl.karol_trybalski.befit.domain.exception.DomainError.*;
 import static org.springframework.http.HttpStatus.*;
+import static pl.karol_trybalski.befit.domain.exception.DomainError.*;
 
 // TODO - think how to make this prettier and more elegant
 public class ResponseUtils {
@@ -27,15 +27,15 @@ public class ResponseUtils {
     .build();
 
 
-    public static HttpStatus getHttpStatus(DomainError domainError) {
-      if(domainError == null) {
-        return INTERNAL_SERVER_ERROR;
-      }
-
-      return HTTP_STATUS_TO_DOMAIN_ERROR.entrySet().stream()
-        .filter(entry -> entry.getValue().contains(domainError))
-        .findFirst()
-        .map(Map.Entry::getKey)
-        .orElse(INTERNAL_SERVER_ERROR);
+  public static HttpStatus getHttpStatus(DomainError domainError) {
+    if(domainError == null) {
+      return INTERNAL_SERVER_ERROR;
     }
+
+    return HTTP_STATUS_TO_DOMAIN_ERROR.entrySet().stream()
+      .filter(entry -> entry.getValue().contains(domainError))
+      .findFirst()
+      .map(Map.Entry::getKey)
+      .orElse(INTERNAL_SERVER_ERROR);
+  }
 }

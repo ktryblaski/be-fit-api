@@ -1,4 +1,4 @@
-package pl.karol_trybalski.befit.webservice.util;
+package pl.karol_trybalski.befit.api.util;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.CollectionUtils;
@@ -9,7 +9,10 @@ import pl.karol_trybalski.befit.service.util.sort.SortDirection;
 import pl.karol_trybalski.befit.service.util.sort.SortField;
 
 import javax.annotation.Nonnull;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;

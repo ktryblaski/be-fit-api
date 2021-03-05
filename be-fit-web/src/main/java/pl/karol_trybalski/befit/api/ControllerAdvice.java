@@ -1,4 +1,4 @@
-package pl.karol_trybalski.befit.webservice;
+package pl.karol_trybalski.befit.api;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.NoHandlerFoundException;
+import pl.karol_trybalski.befit.api.util.ResponseUtils;
 import pl.karol_trybalski.befit.domain.exception.DomainError;
 import pl.karol_trybalski.befit.domain.exception.DomainException;
-import pl.karol_trybalski.befit.webservice.util.ResponseUtils;
 
 import javax.persistence.EntityNotFoundException;
 

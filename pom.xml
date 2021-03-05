@@ -18,12 +18,11 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>be-fit-app</module>
         <module>be-fit-domain</module>
+        <module>be-fit-dto</module>
         <module>be-fit-persistence</module>
         <module>be-fit-service</module>
-        <module>be-fit-webservice</module>
-        <module>be-fit-dto</module>
+        <module>be-fit-web</module>
     </modules>
 
     <properties>
@@ -50,12 +49,6 @@
         <dependencies>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>be-fit-app</artifactId>
-                <version>${project.version}</version>
-                <type>jar</type>
-            </dependency>
-            <dependency>
-                <groupId>${project.groupId}</groupId>
                 <artifactId>be-fit-domain</artifactId>
                 <version>${project.version}</version>
                 <type>jar</type>
@@ -80,7 +73,7 @@
             </dependency>
             <dependency>
                 <groupId>${project.groupId}</groupId>
-                <artifactId>be-fit-webservice</artifactId>
+                <artifactId>be-fit-web</artifactId>
                 <version>${project.version}</version>
                 <type>jar</type>
             </dependency>

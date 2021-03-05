@@ -1,0 +1,35 @@
+server:
+  port: 9090
+  servlet:
+    context-path: /api
+
+spring:
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      connection-timeout: 20000
+      maximum-pool-size: 5
+  flyway:
+    locations: classpath:db/deployment_migration,classpath:db/seeded_data
+  mvc:
+    throw-exception-if-no-handler-found: true
+  profiles:
+    active: dev
+  resources:
+    add-mappings: false
+
+---
+spring:
+  profiles: dev
+  datasource:
+    password: qwerty123456
+    url: jdbc:postgresql://localhost:15432/befit
+    username: postgres
+  jpa:
+    show-sql: true
+
+---
+spring:
+  profiles: remote
+  jpa:
+    show-sql: false

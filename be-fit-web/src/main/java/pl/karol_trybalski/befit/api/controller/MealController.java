@@ -1,4 +1,4 @@
-package pl.karol_trybalski.befit.webservice.controller;
+package pl.karol_trybalski.befit.api.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

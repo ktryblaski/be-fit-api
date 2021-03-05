@@ -1,4 +1,4 @@
-package pl.karol_trybalski.befit.webservice;
+package pl.karol_trybalski.befit.api;
 
 import lombok.Getter;
 import lombok.Setter;
