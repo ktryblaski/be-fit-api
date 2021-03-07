@@ -15,12 +15,15 @@ spring:
     throw-exception-if-no-handler-found: true
   profiles:
     active: dev
-  resources:
-    add-mappings: false
+  web:
+    resources:
+      add-mappings: false
 
 ---
 spring:
-  profiles: dev
+  config:
+    activate:
+      on-profile: dev
   datasource:
     password: qwerty123456
     url: jdbc:postgresql://localhost:15432/befit
@@ -30,6 +33,8 @@ spring:
 
 ---
 spring:
-  profiles: remote
+  config:
+    activate:
+      on-profile: remote
   jpa:
     show-sql: false
