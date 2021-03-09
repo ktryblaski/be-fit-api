@@ -1,6 +1,6 @@
 package pl.karol_trybalski.befit.api.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
@@ -13,16 +13,12 @@ import pl.karol_trybalski.befit.service.util.pagination.Pagination;
 
 import static pl.karol_trybalski.befit.api.util.PaginationUtils.buildPagination;
 
-@RestController
+@RequiredArgsConstructor
 @RequestMapping(path = "/products")
+@RestController
 public class ProductController {
 
     private final ProductServiceImpl productService;
-
-    @Autowired
-    public ProductController(final ProductServiceImpl productService) {
-        this.productService = productService;
-    }
 
     @GetMapping
     public Page<ProductViewDTO> list(@RequestParam MultiValueMap<String, String> params) {

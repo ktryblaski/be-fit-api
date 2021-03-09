@@ -1,6 +1,6 @@
 package pl.karol_trybalski.befit.api.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
@@ -13,16 +13,12 @@ import pl.karol_trybalski.befit.dto.mapper.RecipeMapper;
 import pl.karol_trybalski.befit.service.recipe.RecipeServiceImpl;
 import pl.karol_trybalski.befit.service.util.pagination.Pagination;
 
-@RestController
+@RequiredArgsConstructor
 @RequestMapping(path = "/recipes")
+@RestController
 public class RecipeController {
 
     private final RecipeServiceImpl recipeService;
-
-    @Autowired
-    public RecipeController(final RecipeServiceImpl recipeService) {
-        this.recipeService = recipeService;
-    }
 
     @GetMapping
     public Page<RecipeViewDTO> findAll(@RequestParam MultiValueMap<String, String> params) {

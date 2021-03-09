@@ -1,6 +1,6 @@
 package pl.karol_trybalski.befit.api.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import pl.karol_trybalski.befit.dto.dto.meal.MealCUDTO;
 import pl.karol_trybalski.befit.dto.dto.meal.MealDTO;
@@ -10,16 +10,12 @@ import pl.karol_trybalski.befit.service.MealServiceImpl;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RestController
+@RequiredArgsConstructor
 @RequestMapping(path = "/meals")
+@RestController
 public class MealController {
 
     private final MealServiceImpl mealService;
-
-    @Autowired
-    public MealController(final MealServiceImpl mealService) {
-        this.mealService = mealService;
-    }
 
     @GetMapping
     public List<MealDTO> findAll() {

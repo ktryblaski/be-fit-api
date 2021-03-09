@@ -1,6 +1,6 @@
 package pl.karol_trybalski.befit.service.recipe;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -25,26 +25,15 @@ import pl.karol_trybalski.befit.service.util.pagination.PaginationUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
-@Service
+@RequiredArgsConstructor
 @Transactional
+@Service
 public class RecipeServiceImpl {
 
     private final RecipeRepository repository;
     private final RecipeViewRepository viewRepository;
     private final IngredientRepository ingredientRepository;
     private final ProductRepository productRepository;
-
-    @Autowired
-    public RecipeServiceImpl(final RecipeRepository repository,
-                             final RecipeViewRepository viewRepository,
-                             final IngredientRepository ingredientRepository,
-                             final ProductRepository productRepository) {
-
-        this.repository = repository;
-        this.viewRepository = viewRepository;
-        this.ingredientRepository = ingredientRepository;
-        this.productRepository = productRepository;
-    }
 
     public Page<RecipeView> findAll(final Pagination<RecipeSortBy> pagination) {
         Pageable pageable = PaginationUtils.buildPageable(pagination, RecipeSortBy.GET_COLUMN);

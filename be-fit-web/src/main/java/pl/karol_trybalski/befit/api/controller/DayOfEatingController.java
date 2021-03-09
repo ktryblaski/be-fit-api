@@ -1,6 +1,6 @@
 package pl.karol_trybalski.befit.api.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import pl.karol_trybalski.befit.dto.dto.day_of_eating.DayOfEatingBeginDTO;
 import pl.karol_trybalski.befit.dto.dto.day_of_eating.DayOfEatingDTO;
@@ -11,16 +11,12 @@ import pl.karol_trybalski.befit.service.DayOfEatingServiceImpl;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@RestController
+@RequiredArgsConstructor
 @RequestMapping(path = "/days-of-eating")
+@RestController
 public class DayOfEatingController {
 
     private final DayOfEatingServiceImpl service;
-
-    @Autowired
-    public DayOfEatingController(final DayOfEatingServiceImpl service) {
-        this.service = service;
-    }
 
     @GetMapping("lite")
     public List<DayOfEatingLiteDTO> findAll() {

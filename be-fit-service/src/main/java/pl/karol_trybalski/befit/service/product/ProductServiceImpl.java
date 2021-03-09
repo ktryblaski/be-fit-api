@@ -1,6 +1,6 @@
 package pl.karol_trybalski.befit.service.product;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -15,23 +15,14 @@ import pl.karol_trybalski.befit.persistence.repository.product.ProductViewReposi
 import pl.karol_trybalski.befit.service.util.pagination.Pagination;
 import pl.karol_trybalski.befit.service.util.pagination.PaginationUtils;
 
-@Service
+@RequiredArgsConstructor
 @Transactional
+@Service
 public class ProductServiceImpl {
 
   final ProductRepository repository;
   final ProductViewRepository viewRepository;
   final MacronutrientsRepository macronutrientsRepository;
-
-  @Autowired
-  public ProductServiceImpl(final ProductRepository repository,
-                            final ProductViewRepository viewRepository,
-                            final MacronutrientsRepository macronutrientsRepository) {
-
-    this.repository = repository;
-    this.viewRepository = viewRepository;
-    this.macronutrientsRepository = macronutrientsRepository;
-  }
 
   public Page<ProductView> findAll(final Pagination<ProductSortBy> pagination) {
     Pageable pageable = PaginationUtils.buildPageable(pagination, ProductSortBy.GET_COLUMN);
