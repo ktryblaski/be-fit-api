@@ -68,3 +68,29 @@ CREATE TABLE day_of_eating_meal
     meal_id INTEGER NOT NULL REFERENCES meal(id),
     UNIQUE (day_of_eating_id, meal_id)
 );
+
+CREATE SEQUENCE users_seq START 1;
+CREATE TABLE users
+(
+    id INTEGER PRIMARY KEY DEFAULT nextval('users_seq'),
+    name VARCHAR(64) NOT NULL,
+    surname VARCHAR(64) NOT NULL,
+    email VARCHAR(128) NOT NULL UNIQUE,
+    password VARCHAR(512) NOT NULL,
+    register_at TIMESTAMP NOT NULL DEFAULT now(),
+    locked BOOLEAN NOT NULL DEFAULT false
+);
+
+CREATE SEQUENCE permission_seq START 1;
+CREATE TABLE permission
+(
+    id INTEGER PRIMARY KEY DEFAULT nextval('permission_seq'),
+    code VARCHAR(64) NOT NULL
+);
+
+CREATE TABLE users_permission
+(
+    user_id INTEGER NOT NULL REFERENCES users(id),
+    permission_id INTEGER NOT NULL REFERENCES permission(id),
+    UNIQUE (user_id, permission_id)
+);
