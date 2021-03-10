@@ -34,7 +34,8 @@ if [[ -z "$container" ]]; then
           -p ${HOST_PORT}:5432 \
           -v ${VOLUME_NAME}:/var/lib/postgresql/data \
           -d --rm  \
-          postgres:${POSTGRES_VERSION}
+          postgres:${POSTGRES_VERSION} \
+          -c log_statement=all
 else
   echo "A container already exists."
 fi
