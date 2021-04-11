@@ -3,7 +3,7 @@ package pl.karol_trybalski.befit;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(scanBasePackages = "pl.karol_trybalski.befit")
+@SpringBootApplication
 public class BeFitApiApplication {
 
 	public static void main(String[] args) {

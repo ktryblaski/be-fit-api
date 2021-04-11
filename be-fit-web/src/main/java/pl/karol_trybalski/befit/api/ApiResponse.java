@@ -15,6 +15,10 @@ public class ApiResponse<T> {
         return new ApiResponse<>(null, error);
     }
 
+    public static <T> ApiResponse<T> from(T data, DomainError error) {
+        return new ApiResponse<>(data, error);
+    }
+
     private ApiResponse(T data, DomainError error) {
         this.data = data;
         this.error = error != null ? error.code : null;

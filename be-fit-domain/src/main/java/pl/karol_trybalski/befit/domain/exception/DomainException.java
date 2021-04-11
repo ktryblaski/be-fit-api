@@ -4,7 +4,8 @@ public class DomainException extends RuntimeException {
 
     public final DomainError error;
 
-    public DomainException(DomainError error) {
+    public DomainException(final DomainError error) {
+        super(error.code);
         this.error = error;
     }
 
