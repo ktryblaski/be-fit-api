@@ -1,8 +1,8 @@
 package pl.karol_trybalski.befit.domain.module.product;
 
-import java.util.function.Function;
+import pl.karol_trybalski.befit.domain.SortableColumn;
 
-public enum ProductSortBy {
+public enum ProductSortBy implements SortableColumn {
 
   NAME("name"),
   FAVOURITE("favourite"),
@@ -12,12 +12,20 @@ public enum ProductSortBy {
   CALORIES("calories"),
   ;
 
-  public static Function<ProductSortBy, String> GET_COLUMN = p -> p.column;
-
   public final String column;
 
   ProductSortBy(String column) {
     this.column = column;
+  }
+
+  @Override
+  public String getColumnName() {
+    return column;
+  }
+
+  @Override
+  public String getName() {
+    return name();
   }
 
 }

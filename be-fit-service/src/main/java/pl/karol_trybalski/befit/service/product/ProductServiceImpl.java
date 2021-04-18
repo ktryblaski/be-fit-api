@@ -13,7 +13,8 @@ import pl.karol_trybalski.befit.persistence.repository.MacronutrientsRepository;
 import pl.karol_trybalski.befit.persistence.repository.product.ProductRepository;
 import pl.karol_trybalski.befit.persistence.repository.product.ProductViewRepository;
 import pl.karol_trybalski.befit.service.util.pagination.Pagination;
-import pl.karol_trybalski.befit.service.util.pagination.PaginationUtils;
+
+import static pl.karol_trybalski.befit.service.util.pagination.PaginationUtils.buildPageable;
 
 @RequiredArgsConstructor
 @Transactional
@@ -24,8 +25,8 @@ public class ProductServiceImpl {
   final ProductViewRepository viewRepository;
   final MacronutrientsRepository macronutrientsRepository;
 
-  public Page<ProductView> findAll(final Pagination<ProductSortBy> pagination) {
-    Pageable pageable = PaginationUtils.buildPageable(pagination, ProductSortBy.GET_COLUMN);
+  public Page<ProductView> findAll(final Pagination pagination) {
+    Pageable pageable = buildPageable(pagination, ProductSortBy.values());
     return viewRepository.findAll(pageable);
   }
 

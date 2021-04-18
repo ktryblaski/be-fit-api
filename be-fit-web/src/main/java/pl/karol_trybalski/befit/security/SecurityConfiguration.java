@@ -1,4 +1,4 @@
-package pl.karol_trybalski.befit.api.security;
+package pl.karol_trybalski.befit.security;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;

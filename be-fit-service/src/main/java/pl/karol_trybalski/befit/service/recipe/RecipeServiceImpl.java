@@ -25,6 +25,8 @@ import pl.karol_trybalski.befit.service.util.pagination.PaginationUtils;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import static pl.karol_trybalski.befit.service.util.pagination.PaginationUtils.buildPageable;
+
 @RequiredArgsConstructor
 @Transactional
 @Service
@@ -35,8 +37,8 @@ public class RecipeServiceImpl {
     private final IngredientRepository ingredientRepository;
     private final ProductRepository productRepository;
 
-    public Page<RecipeView> findAll(final Pagination<RecipeSortBy> pagination) {
-        Pageable pageable = PaginationUtils.buildPageable(pagination, RecipeSortBy.GET_COLUMN);
+    public Page<RecipeView> findAll(final Pagination pagination) {
+        final Pageable pageable = buildPageable(pagination, RecipeSortBy.values());
         return viewRepository.findAll(pageable);
     }
 

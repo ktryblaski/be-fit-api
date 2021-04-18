@@ -1,4 +1,4 @@
-package pl.karol_trybalski.befit.api.security;
+package pl.karol_trybalski.befit.security;
 
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.AuthenticationEntryPoint;

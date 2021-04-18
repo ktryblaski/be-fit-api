@@ -2,10 +2,7 @@ package pl.karol_trybalski.befit.api.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.*;
-import pl.karol_trybalski.befit.api.util.PaginationUtils;
-import pl.karol_trybalski.befit.domain.module.recipe.RecipeSortBy;
 import pl.karol_trybalski.befit.dto.dto.recipe.RecipeCUDTO;
 import pl.karol_trybalski.befit.dto.dto.recipe.RecipeDTO;
 import pl.karol_trybalski.befit.dto.dto.recipe.RecipeViewDTO;
@@ -21,8 +18,7 @@ public class RecipeController {
     private final RecipeServiceImpl recipeService;
 
     @GetMapping
-    public Page<RecipeViewDTO> findAll(@RequestParam MultiValueMap<String, String> params) {
-        Pagination<RecipeSortBy> pagination = PaginationUtils.buildPagination(params, RecipeSortBy.class);
+    public Page<RecipeViewDTO> findAll(final Pagination pagination) {
         return recipeService.findAll(pagination).map(RecipeMapper.INSTANCE::map);
     }
 
